@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "UI/Industry/IndustryTBMChartWidget.h"
 #include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
 #include "Components/HorizontalBox.h"
+#include "Components/HorizontalBoxSlot.h"
 #include "Base/BaseTextWidget.h"
 
 void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
@@ -18,7 +20,13 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
 			// 텍스트 입력
 			textBlock->SetTextWithText(FText::FromString(FString::FromInt(value)));
-			mYArea.Get()->AddChild(textBlock);
+
+			UVerticalBoxSlot* newSlot = mYArea.Get()->AddChildToVerticalBox(textBlock);
+			if (newSlot)
+			{
+				// 슬롯을 화면 비율에 맞게 채우기
+				newSlot->SetSize(ESlateSizeRule::Fill);
+			}
 		}
 	}
 }
@@ -35,7 +43,13 @@ void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
 			// 텍스트 입력
 			textBlock->SetTextWithText(xValues[i]);
-			mXArea.Get()->AddChild(textBlock);
+
+			UHorizontalBoxSlot* newSlot = mXArea.Get()->AddChildToHorizontalBox(textBlock);
+			if (newSlot)
+			{
+				// 슬롯을 화면 비율에 맞게 채우기
+				newSlot->SetSize(ESlateSizeRule::Fill);
+			}
 		}
 	}
 }
