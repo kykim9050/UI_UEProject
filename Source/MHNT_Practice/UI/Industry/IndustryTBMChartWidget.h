@@ -27,9 +27,11 @@ protected:
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<UVerticalBox> YArea = nullptr;
+	TObjectPtr<UVerticalBox> mYArea = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<UHorizontalBox> XArea = nullptr;
+	TObjectPtr<UHorizontalBox> mXArea = nullptr;
 
+	UPROPERTY(Editanywhere, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UUserWidget> mBaseTextWidgetClass = nullptr;
 };

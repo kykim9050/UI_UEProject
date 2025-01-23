@@ -9,9 +9,22 @@
 /**
  * 
  */
+class UTextBlock;
 UCLASS()
 class MHNT_PRACTICE_API UBaseTextWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+public:
+	UFUNCTION(BlueprintCallable)
+	void SetTextWithText(const FText& input);
+
+protected:
+
+private:
+
+protected:
+
+private:
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UTextBlock> mTextBlock = nullptr;
 };
