@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "UI/Industry/IndustryTBMChartWidget.h"
 #include "Components/VerticalBox.h"
+#include "Components/HorizontalBox.h"
 #include "Base/BaseTextWidget.h"
 
 void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
@@ -21,3 +22,21 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 		}
 	}
 }
+
+void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
+{
+	int32 cnt = xValues.Num();
+
+	if (mBaseTextWidgetClass)
+	{
+		for (int32 i = 0; i < cnt; ++i)
+		{
+			// horizontal box에 WBP_Textblock을 생성해서 하나씩 추가
+			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
+			// 텍스트 입력
+			textBlock->SetTextWithText(xValues[i]);
+			mXArea.Get()->AddChild(textBlock);
+		}
+	}
+}
+

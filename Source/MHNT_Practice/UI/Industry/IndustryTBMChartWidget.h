@@ -19,6 +19,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void InitYAxis(int32 max, int32 min, int32 interval);
 
+	UFUNCTION(BlueprintCallable)
+	void InitXAxis(const TArray<FText>& xValues);
+
 protected:
 
 private:
