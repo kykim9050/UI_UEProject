@@ -21,6 +21,9 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 			// 텍스트 입력
 			textBlock->SetTextWithText(FText::FromString(FString::FromInt(value)));
 			textBlock->SetJustification(ETextJustify::Right);
+			FSlateFontInfo slateFontInfo{ textBlock->GetFont() };
+			slateFontInfo.Size = mAxisFontSize;
+			textBlock->SetFont(slateFontInfo);
 
 			UVerticalBoxSlot* newSlot = mYArea.Get()->AddChildToVerticalBox(textBlock);
 			if (newSlot)
@@ -47,6 +50,9 @@ void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 			// 텍스트 입력
 			textBlock->SetTextWithText(xValues[i]);
 			textBlock->SetJustification(ETextJustify::Center);
+			FSlateFontInfo slateFontInfo{ textBlock->GetFont() };
+			slateFontInfo.Size = mAxisFontSize;
+			textBlock->SetFont(slateFontInfo);
 
 			UHorizontalBoxSlot* newSlot = mXArea.Get()->AddChildToHorizontalBox(textBlock);
 			if (newSlot)

@@ -20,11 +20,13 @@ public:
 
 	void SetJustification(ETextJustify::Type InJustification);
 
-
+	void SetFont(const FSlateFontInfo& InFontInfo);
+	const FSlateFontInfo& GetFont() const;
 
 protected:
-
+	
 private:
+	void NativeConstruct() override;
 
 protected:
 

@@ -37,4 +37,7 @@ private:
 
 	UPROPERTY(Editanywhere, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> mBaseTextWidgetClass = nullptr;
+
+	UPROPERTY()
+	float mAxisFontSize = 10.f;
 };
