@@ -24,8 +24,10 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 			UVerticalBoxSlot* newSlot = mYArea.Get()->AddChildToVerticalBox(textBlock);
 			if (newSlot)
 			{
-				// 슬롯을 화면 비율에 맞게 채우기
+				// 슬롯을 화면 비율에 맞게 채우기 & 슬롯 정렬
 				newSlot->SetSize(ESlateSizeRule::Fill);
+				newSlot->SetHorizontalAlignment(HAlign_Right);
+				newSlot->SetVerticalAlignment(VAlign_Center);
 			}
 		}
 	}
@@ -47,8 +49,10 @@ void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 			UHorizontalBoxSlot* newSlot = mXArea.Get()->AddChildToHorizontalBox(textBlock);
 			if (newSlot)
 			{
-				// 슬롯을 화면 비율에 맞게 채우기
+				// 슬롯을 화면 비율에 맞게 채우기 & 슬롯 정렬
 				newSlot->SetSize(ESlateSizeRule::Fill);
+				newSlot->SetHorizontalAlignment(HAlign_Center);
+				newSlot->SetVerticalAlignment(VAlign_Center);
 			}
 		}
 	}
