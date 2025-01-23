@@ -9,9 +9,27 @@
 /**
  * 
  */
+class UVerticalBox;
+class UHorizontalBox;
 UCLASS()
 class MHNT_PRACTICE_API UIndustryTBMChartWidget : public UBaseIndustryWidget
 {
 	GENERATED_BODY()
+public:
+	UFUNCTION(BlueprintCallable)
+	void InitYAxis(int32 max, int32 min, int32 interval);
+
+protected:
+
+private:
+
+protected:
+
+private:
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UVerticalBox> YArea = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UHorizontalBox> XArea = nullptr;
 
 };
