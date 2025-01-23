@@ -20,6 +20,7 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
 			// 텍스트 입력
 			textBlock->SetTextWithText(FText::FromString(FString::FromInt(value)));
+			textBlock->SetJustification(ETextJustify::Right);
 
 			UVerticalBoxSlot* newSlot = mYArea.Get()->AddChildToVerticalBox(textBlock);
 			if (newSlot)
@@ -45,6 +46,7 @@ void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
 			// 텍스트 입력
 			textBlock->SetTextWithText(xValues[i]);
+			textBlock->SetJustification(ETextJustify::Center);
 
 			UHorizontalBoxSlot* newSlot = mXArea.Get()->AddChildToHorizontalBox(textBlock);
 			if (newSlot)

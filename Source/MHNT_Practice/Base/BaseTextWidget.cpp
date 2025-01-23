@@ -6,9 +6,16 @@
 
 void UBaseTextWidget::SetTextWithText(const FText& input)
 {
-	// 언리얼의 assert로 mTextBlock이 nullptr인지 확인
 	if (mTextBlock)
 	{
 		mTextBlock->SetText(input);
+	}
+}
+
+void UBaseTextWidget::SetJustification(ETextJustify::Type InJustification)
+{
+	if (mTextBlock)
+	{
+		mTextBlock->SetJustification(InJustification);
 	}
 }

@@ -18,6 +18,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetTextWithText(const FText& input);
 
+	void SetJustification(ETextJustify::Type InJustification);
+
+
+
 protected:
 
 private:
