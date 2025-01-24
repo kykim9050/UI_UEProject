@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/Industry/Base/BaseIndustryWidget.h"
+#include "Interface/IChartInterface.h"
 #include "IndustryTBMChartWidget.generated.h"
 
 /**
@@ -13,7 +14,7 @@ class UVerticalBox;
 class UHorizontalBox;
 class UBaseLineChartWidget;
 UCLASS()
-class MHNT_PRACTICE_API UIndustryTBMChartWidget : public UBaseIndustryWidget
+class MHNT_PRACTICE_API UIndustryTBMChartWidget : public UBaseIndustryWidget, public IChartInterface
 {
 	GENERATED_BODY()
 public:
@@ -28,7 +29,7 @@ public:
 	/// </summary>
 	/// <param name="datas"></param>
 	UFUNCTION(BlueprintCallable)
-	void UpdateData(const TArray<int>& datas);
+	void UpdateData(const TArray<int32>& datas) override;
 
 protected:
 
