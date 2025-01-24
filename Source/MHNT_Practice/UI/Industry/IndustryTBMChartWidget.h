@@ -19,7 +19,7 @@ class MHNT_PRACTICE_API UIndustryTBMChartWidget : public UBaseIndustryWidget, pu
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable)
-	void InitYAxis(int32 max, int32 min, int32 interval);
+	void InitYAxis(const int32 max, const int32 min, const int32 interval);
 
 	UFUNCTION(BlueprintCallable)
 	void InitXAxis(const TArray<FText>& xValues);

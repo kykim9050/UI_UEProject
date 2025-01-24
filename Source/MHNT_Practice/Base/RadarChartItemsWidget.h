@@ -13,5 +13,15 @@ UCLASS()
 class MHNT_PRACTICE_API URadarChartItemsWidget : public UBaseChartWidget
 {
 	GENERATED_BODY()
-	
+public:
+	void SetItems();
+
+protected:
+
+private:
+
+protected:
+
+private:
+
 };

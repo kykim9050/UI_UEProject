@@ -2,10 +2,11 @@
 
 
 #include "UI/Industry/IndustryDisasterChartWidget.h"
+#include "Base/BaseRadarChartWidget.h"
 
-void UIndustryDisasterChartWidget::InitItems(int32 max, int32 interval)
+void UIndustryDisasterChartWidget::InitItems(const int32 max, const int32 interval)
 {
-	
+	mRadarChart->SetItems();
 }
 
 void UIndustryDisasterChartWidget::NativeConstruct()

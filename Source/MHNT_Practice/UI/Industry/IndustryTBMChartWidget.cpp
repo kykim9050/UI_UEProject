@@ -7,7 +7,7 @@
 #include "Base/BaseTextWidget.h"
 #include "Base/BaseLineChartWidget.h"
 
-void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
+void UIndustryTBMChartWidget::InitYAxis(const int32 max, const int32 min, const int32 interval)
 {
 	mNumY = StaticCast<int>((max-min) / StaticCast<double>(interval)) + 1;
 	mMaxYValue = max;

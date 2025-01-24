@@ -3,3 +3,7 @@
 
 #include "Base/RadarChartItemsWidget.h"
 
+void URadarChartItemsWidget::SetItems()
+{
+	int a = 0;
+}
