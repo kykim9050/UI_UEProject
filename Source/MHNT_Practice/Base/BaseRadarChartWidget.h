@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "Base/BaseChartWidget.h"
 #include "BaseRadarChartWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class MHNT_PRACTICE_API UBaseRadarChartWidget : public UUserWidget
+class MHNT_PRACTICE_API UBaseRadarChartWidget : public UBaseChartWidget
 {
 	GENERATED_BODY()
 	

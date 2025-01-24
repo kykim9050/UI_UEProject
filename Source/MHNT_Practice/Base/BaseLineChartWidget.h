@@ -3,20 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "Base/BaseChartWidget.h"
 #include "BaseLineChartWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class MHNT_PRACTICE_API UBaseLineChartWidget : public UUserWidget
+class MHNT_PRACTICE_API UBaseLineChartWidget : public UBaseChartWidget
 {
 	GENERATED_BODY()
 public:
-
-    //UFUNCTION(BlueprintCallable)
-    void SetGraphData(const TArray<FVector2D>& InDataPoints);
 
 protected:
     // Override OnPaint to draw the graph
@@ -32,12 +29,8 @@ protected:
 
 private:
 
-
 protected:
 
 private:
-    // Data points for the graph
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
-    TArray<FVector2D> DataPoints;
 
 };

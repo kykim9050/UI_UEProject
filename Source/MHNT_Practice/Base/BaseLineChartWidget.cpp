@@ -2,16 +2,8 @@
 
 
 #include "Base/BaseLineChartWidget.h"
-
 #include "Slate/SlateBrushAsset.h"
 #include "Engine/Canvas.h"
-
-void UBaseLineChartWidget::SetGraphData(const TArray<FVector2D>& InDataPoints)
-{
-    DataPoints = InDataPoints;
-
-    Invalidate(EInvalidateWidget::Paint); // Force the widget to redraw
-}
 
 int32 UBaseLineChartWidget::NativePaint(
     const FPaintArgs& Args,
