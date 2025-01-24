@@ -15,7 +15,7 @@ class MHNT_PRACTICE_API UBaseRadarChartWidget : public UBaseChartWidget
 {
 	GENERATED_BODY()
 public:
-    void SetItems();
+    void SetItems(const TArray<FText>& itemNames);
 
 protected:
     virtual int32 NativePaint(
