@@ -53,13 +53,16 @@ private:
 	float mAxisFontSize = 10.f;
 
 	UPROPERTY()
-	FVector2f mDataPosOffset{-1.f, -1.f};
+	FVector2D mDataPosOffset{ -1., -1. };
 
 	UPROPERTY()
 	int32 mNumX = -1;
 
 	UPROPERTY()
 	int32 mNumY = -1;
+
+	UPROPERTY()
+	int32 mYInterval = -1;
 
 	UPROPERTY()
 	int32 mMaxYValue = -1;

@@ -11,12 +11,14 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 {
 	mNumY = StaticCast<int>((max-min) / StaticCast<double>(interval)) + 1;
 	mMaxYValue = max;
+	mDataPosOffset.Y = 1. / mNumY / 2.;
+	mYInterval = interval;
 
 	if (mBaseTextWidgetClass)
 	{
 		for (int32 i = 0; i < mNumY; ++i)
 		{
-			int value = max - interval * i;
+			int value = max - mYInterval * i;
 
 			// vertical box에 WBP_Textblock을 생성해서 하나씩 추가
 			UBaseTextWidget* textBlock = CreateWidget<UBaseTextWidget>(this, mBaseTextWidgetClass);
@@ -42,6 +44,7 @@ void UIndustryTBMChartWidget::InitYAxis(int32 max, int32 min, int32 interval)
 void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 {
 	mNumX = xValues.Num();
+	mDataPosOffset.X = 1. / mNumX / 2.;
 
 	if (mBaseTextWidgetClass)
 	{
@@ -70,11 +73,11 @@ void UIndustryTBMChartWidget::InitXAxis(const TArray<FText>& xValues)
 
 void UIndustryTBMChartWidget::UpdateData(const TArray<int>& datas)
 {
-	//if (-1.f == mDataPosOffset.X || -1.f == mDataPosOffset.Y)
-	//{
-	//	UE_LOG(LogType, Fatal, TEXT("%S(%u)> if (-1.f == mDataPosOffset.X || -1.f == mDataPosOffset.Y)"), __FUNCTION__, __LINE__);
-	//	return;
-	//}
+	if (-1.f == mDataPosOffset.X || -1.f == mDataPosOffset.Y)
+	{
+		UE_LOG(LogType, Fatal, TEXT("%S(%u)> if (-1.f == mDataPosOffset.X || -1.f == mDataPosOffset.Y)"), __FUNCTION__, __LINE__);
+		return;
+	}
 
 	int32 datasNum = datas.Num();
 	if (datasNum > mNumX)
@@ -88,12 +91,12 @@ void UIndustryTBMChartWidget::UpdateData(const TArray<int>& datas)
 
 	for (int32 i = 0; i < datasNum; ++i)
 	{
-		// int를 float 비율로 변경 (y : 0~1(위~아래))
-		double x = StaticCast<double>(i) / 10.;	// Test용 x 임시 좌표정보
-		double y = StaticCast<double>(mMaxYValue - datas[i]) / 100.;
+		// int를 float 비율로 변경 (x : 0~1(왼~오), y : 0~1(위~아래))
 		// offset만큼 데이터 이동 연산 추가
-		newDatas.Add(FVector2D{ x, y });
-		//newDatas[i] = 
+		newDatas.Add(FVector2D{ 
+			StaticCast<double>(i) / StaticCast<double>(mNumX), 
+			StaticCast<double>(mMaxYValue - datas[i]) / StaticCast<double>(mNumY) / StaticCast<double>(mYInterval) });
+		newDatas[i] += mDataPosOffset;
 	}
 
 	// 실제 차트 데이터에 반영
