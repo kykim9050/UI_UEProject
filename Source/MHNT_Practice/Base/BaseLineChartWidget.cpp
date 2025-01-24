@@ -22,12 +22,12 @@ int32 UBaseLineChartWidget::NativePaint(
     FVector2D CanvasSize = AllottedGeometry.GetLocalSize();
 
     // Scale points to fit the canvas
-    if (DataPoints.Num() > 1)
+    if (mDataPoints.Num() > 1)
     {
-        for (int32 i = 0; i < DataPoints.Num() - 1; i++)
+        for (int32 i = 0; i < mDataPoints.Num() - 1; i++)
         {
-            FVector2D StartPoint = DataPoints[i] * CanvasSize;
-            FVector2D EndPoint = DataPoints[i + 1] * CanvasSize;
+            FVector2D StartPoint = mDataPoints[i] * CanvasSize;
+            FVector2D EndPoint = mDataPoints[i + 1] * CanvasSize;
 
             FSlateDrawElement::MakeLines(
                 OutDrawElements,
@@ -43,9 +43,9 @@ int32 UBaseLineChartWidget::NativePaint(
     }
 
     // 데이터 포인트 그리기
-    if (DataPoints.Num() > 0)
+    if (mDataPoints.Num() > 0)
     {
-        for (const FVector2D& Point : DataPoints)
+        for (const FVector2D& Point : mDataPoints)
         {
             FVector2D DrawPosition = Point * CanvasSize;
 

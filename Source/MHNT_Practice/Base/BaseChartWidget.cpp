@@ -7,7 +7,7 @@
 
 void UBaseChartWidget::SetGraphData(const TArray<FVector2D>& InDataPoints)
 {
-    DataPoints = InDataPoints;
+    mDataPoints = InDataPoints;
 
     Invalidate(EInvalidateWidget::Paint); // Force the widget to redraw
 }

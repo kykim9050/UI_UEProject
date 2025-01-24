@@ -36,7 +36,7 @@ private:
 protected:
     // Data points for the graph
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
-    TArray<FVector2D> DataPoints;
+    TArray<FVector2D> mDataPoints;
   
 private:
 };
