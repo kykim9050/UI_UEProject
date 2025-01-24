@@ -59,3 +59,14 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
 
     return Super::NativePaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, currentLayer, InWidgetStyle, bParentEnabled);
 }
+
+void UBaseRadarChartWidget::NativeConstruct()
+{
+    Super::NativeConstruct();
+
+    if (nullptr == mRadarChartItems)
+    {
+        UE_LOG(LogType, Fatal, TEXT("%S(%u)> if (nullptr == mRadarChartItems)"), __FUNCTION__, __LINE__);
+        return;
+    }
+}

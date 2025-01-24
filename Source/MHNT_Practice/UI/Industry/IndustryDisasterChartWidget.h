@@ -23,6 +23,7 @@ protected:
 private:
 
 protected:
+	void NativeConstruct() override;
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
