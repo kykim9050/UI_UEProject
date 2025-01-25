@@ -27,8 +27,10 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
     // Base LayerId
     int32 currentLayer = LayerId;
 
-    // Get the canvas size
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
+    FVector2D canvasOffset = findCanvasCenterOffset(canvasSize);
+    // 캔버스의 세로, 가로 중 최소 값으로 통일
+    canvasSize = convertCanvasSizeSquare(canvasSize);
 
     int32 itemNamesNum = mItemNames.Num();
     // mItemNames 텍스트 요소 화면에 표현
@@ -38,13 +40,13 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
 
         for (const FVector2D& Point : mDataPoints)
         {
-            FVector2D drawPosition = Point * canvasSize;
+            FVector2D drawPosition = Point * canvasSize + canvasOffset;
             FVector2D drawSize(20.0f, 20.0f);
-            const FSlateFontInfo fontInfo = FCoreStyle::GetDefaultFontStyle("Regular", 24);
+            const FSlateFontInfo fontInfo = FCoreStyle::GetDefaultFontStyle("Regular", mItemTextSize);
 
             FSlateDrawElement::MakeText(
                 OutDrawElements,
-                LayerId,
+                currentLayer,
                 AllottedGeometry.ToPaintGeometry(drawPosition, drawSize),
                 mItemNames[itemIdx++],
                 fontInfo,

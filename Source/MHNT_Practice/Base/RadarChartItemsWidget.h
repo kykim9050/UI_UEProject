@@ -38,4 +38,6 @@ private:
     /// </summary>
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
     TArray<FText> mItemNames;
+
+    float mItemTextSize = 10.f;
 };
