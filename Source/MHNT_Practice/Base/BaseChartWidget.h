@@ -31,6 +31,12 @@ protected:
         return Super::NativePaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
     }
 
+    /// <summary>
+    /// 캔버스의 중심좌표로 이동하기 위해 필요한 오프셋 정보를 출력
+    /// </summary>
+    /// <param name="canvasSize"></param>
+    /// <returns></returns>
+    const FVector2D findCanvasCenterOffset(const FVector2D& canvasSize) const;
 private:
 
 protected:
