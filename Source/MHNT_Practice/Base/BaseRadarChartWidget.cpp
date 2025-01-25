@@ -16,9 +16,8 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
 
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
     FVector2D canvasOffset = findCanvasCenterOffset(canvasSize);
-    // 캔버스의 세로, 가로를 모두 동일하게 최소 값으로 고정 (정사각형 형태 고수)
-    double canvasMinSize = FMath::Min(canvasSize.X, canvasSize.Y);
-    canvasSize.X >= canvasSize.Y ? (canvasSize.X = canvasMinSize) : (canvasSize.Y = canvasMinSize);
+    // 캔버스의 세로, 가로 중 최소 값으로 통일
+    canvasSize = convertCanvasSizeSquare(canvasSize);
 
     int32 dataPointsNum = mDataPoints.Num();
     // Scale points to fit the canvas

@@ -37,6 +37,13 @@ protected:
     /// <param name="canvasSize"></param>
     /// <returns></returns>
     const FVector2D findCanvasCenterOffset(const FVector2D& canvasSize) const;
+
+    /// <summary>
+    /// 주어진 사이즈에서 가장 큰 정사각형으로 캔버스 사이즈 반환
+    /// </summary>
+    /// <param name="canvasSize"></param>
+    /// <returns></returns>
+    const FVector2D convertCanvasSizeSquare(const FVector2D& canvasSize) const;
 private:
 
 protected:

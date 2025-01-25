@@ -19,3 +19,12 @@ const FVector2D UBaseChartWidget::findCanvasCenterOffset(const FVector2D& canvas
 
     return canvasOffset;
 }
+
+const FVector2D UBaseChartWidget::convertCanvasSizeSquare(const FVector2D& canvasSize) const
+{
+    FVector2D newSize{ canvasSize };
+
+    double canvasMinSize = FMath::Min(canvasSize.X, canvasSize.Y);
+    canvasSize.X >= canvasSize.Y ? (newSize.X = canvasMinSize) : (newSize.Y = canvasMinSize);
+    return newSize;
+}
