@@ -16,6 +16,9 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
 
     // Get the canvas size
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
+    // 캔버스 사이즈 대비 중심으로 이동하기 위한 오프셋
+    FVector2D canvasOffset{0., 0.};
+    canvasSize.X >= canvasSize.Y ? (canvasOffset.X = canvasSize.X / 2. - canvasSize.Y / 2.) : (canvasOffset.Y = canvasSize.Y / 2. - canvasSize.X / 2.);
     // 캔버스의 세로, 가로를 모두 동일하게 최소 값으로 고정 (정사각형 형태 고수)
     double canvasMinSize = FMath::Min(canvasSize.X, canvasSize.Y);
     canvasSize.X >= canvasSize.Y ? (canvasSize.X = canvasMinSize) : (canvasSize.Y = canvasMinSize);
@@ -26,8 +29,8 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
     {
         for (int32 i = 0; i < dataPointsNum; i++)
         {
-            FVector2D startPoint = mDataPoints[i] * canvasSize;
-            FVector2D endPoint = mDataPoints[(i + 1)% dataPointsNum] * canvasSize;
+            FVector2D startPoint = mDataPoints[i] * canvasSize + canvasOffset;
+            FVector2D endPoint = mDataPoints[(i + 1)% dataPointsNum] * canvasSize + canvasOffset;
 
             FSlateDrawElement::MakeLines(
                 OutDrawElements,
@@ -47,7 +50,7 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
     {
         for (const FVector2D& Point : mDataPoints)
         {
-            FVector2D drawPosition = Point * canvasSize;
+            FVector2D drawPosition = Point * canvasSize + canvasOffset;
 
             // 원의 크기와 색상 설정
             FVector2D circleSize(8.0f, 8.0f); // 반지름 4.0f
