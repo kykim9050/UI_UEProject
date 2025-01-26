@@ -42,4 +42,6 @@ private:
     TArray<FText> mItemNames;
 
     float mItemTextSize = 10.f;
+
+    double mItemsRoundTotalDegree = 360.0;
 };
