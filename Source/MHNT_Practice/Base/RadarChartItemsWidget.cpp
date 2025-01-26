@@ -2,8 +2,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Base/RadarChartItemsWidget.h"
-
 void URadarChartItemsWidget::SetItems(const TArray<FText>& itemNames)
 {
 	// mItemNames 대입
@@ -12,11 +10,13 @@ void URadarChartItemsWidget::SetItems(const TArray<FText>& itemNames)
     int32 itemNamesNum = mItemNames.Num();
     // mItemNames 항목을 토대로 위치 좌표 형성 (Text 코드)
     mDataPoints.Reserve(itemNamesNum);
+
+    double radUnit = FMath::DegreesToRadians(360.0 / StaticCast<double>(itemNamesNum));
     for (int32 i = 0; i < itemNamesNum; i++)
     {
         mDataPoints.Add(FVector2D{ 
-            StaticCast<double>(i)/ StaticCast<double>(itemNamesNum),
-            StaticCast<double>(i)/ StaticCast<double>(itemNamesNum) });
+            FMath::RadiansToDegrees(FMath::Cos(StaticCast<double>(i) * radUnit)),
+            FMath::RadiansToDegrees(FMath::Sin(StaticCast<double>(i) * radUnit))});
     }
 
 	Invalidate(EInvalidateWidget::Paint);
@@ -28,9 +28,8 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
     int32 currentLayer = LayerId;
 
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
+    // 캔버스 좌측 상단 기준이 0,0인 상태에서 0.5,0.5가 중심이 되도록 이동해야 함
     FVector2D canvasOffset = findCanvasCenterOffset(canvasSize);
-    // 캔버스의 세로, 가로 중 최소 값으로 통일
-    canvasSize = convertCanvasSizeSquare(canvasSize);
 
     int32 itemNamesNum = mItemNames.Num();
     // mItemNames 텍스트 요소 화면에 표현
@@ -40,8 +39,8 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
 
         for (const FVector2D& Point : mDataPoints)
         {
-            FVector2D drawPosition = Point * canvasSize + canvasOffset;
-            FVector2D drawSize(20.0f, 20.0f);
+            FVector2D drawPosition = Point + canvasOffset;
+            FVector2D drawSize(1.0f, 1.0f);
             const FSlateFontInfo fontInfo = FCoreStyle::GetDefaultFontStyle("Regular", mItemTextSize);
 
             FSlateDrawElement::MakeText(
@@ -57,4 +56,11 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
     }
 
 	return Super::NativePaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, currentLayer, InWidgetStyle, bParentEnabled);
+}
+
+const FVector2D URadarChartItemsWidget::findCanvasCenterOffset(const FVector2D& canvasSize) const
+{
+    FVector2D canvasOffset = canvasSize / 2.;
+
+    return canvasOffset;
 }

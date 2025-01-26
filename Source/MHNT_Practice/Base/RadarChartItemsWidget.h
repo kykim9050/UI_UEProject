@@ -28,6 +28,8 @@ protected:
         bool bParentEnabled
     ) const override;
 
+    const FVector2D findCanvasCenterOffset(const FVector2D& canvasSize) const override;
+
 private:
 
 protected:
