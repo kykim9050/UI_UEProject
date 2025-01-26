@@ -15,8 +15,9 @@ void URadarChartItemsWidget::SetItems(const TArray<FText>& itemNames)
     for (int32 i = 0; i < itemNamesNum; i++)
     {
         mDataPoints.Add(FVector2D{ 
-            FMath::RadiansToDegrees(FMath::Cos(StaticCast<double>(i) * radUnit)),
-            FMath::RadiansToDegrees(FMath::Sin(StaticCast<double>(i) * radUnit))});
+            FMath::Cos(StaticCast<double>(i) * radUnit),
+            FMath::Sin(StaticCast<double>(i) * radUnit)}
+            );
     }
 
 	Invalidate(EInvalidateWidget::Paint);
@@ -30,6 +31,8 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
     // 캔버스 좌측 상단 기준이 0,0인 상태에서 0.5,0.5가 중심이 되도록 이동해야 함
     FVector2D canvasOffset = findCanvasCenterOffset(canvasSize);
+    // drawPosition에 곱해질 스케일
+    canvasSize = convertCanvasSizeSquare(canvasSize) / 2.;
 
     int32 itemNamesNum = mItemNames.Num();
     // mItemNames 텍스트 요소 화면에 표현
@@ -39,7 +42,7 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
 
         for (const FVector2D& Point : mDataPoints)
         {
-            FVector2D drawPosition = Point + canvasOffset;
+            FVector2D drawPosition = Point * canvasSize + canvasOffset;
             FVector2D drawSize(1.0f, 1.0f);
             const FSlateFontInfo fontInfo = FCoreStyle::GetDefaultFontStyle("Regular", mItemTextSize);
 
