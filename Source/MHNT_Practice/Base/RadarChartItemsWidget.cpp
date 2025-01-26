@@ -54,7 +54,8 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
             FSlateDrawElement::MakeText(
                 OutDrawElements,
                 currentLayer,
-                AllottedGeometry.ToPaintGeometry(drawPosition, calculatedTextSize),
+                // drawPosition 기준으로 텍스트 중앙 정렬 
+                AllottedGeometry.ToPaintGeometry(drawPosition - (calculatedTextSize * 0.5), calculatedTextSize),
                 mItemNames[itemIdx++],
                 fontInfo,
                 ESlateDrawEffect::None,
