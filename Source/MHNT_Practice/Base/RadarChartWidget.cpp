@@ -22,7 +22,7 @@ int32 URadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Al
     FVector2D canvasSize = AllottedGeometry.GetLocalSize();
     FVector2D canvasOffset = findCanvasCenterOffset(canvasSize);
     // 캔버스의 세로, 가로 중 최소 값으로 통일
-    canvasSize = convertCanvasSizeSquare(canvasSize);
+    canvasSize = convertCanvasSizeSquare(canvasSize) / 2.;
 
     int32 dataPointsNum = mDataPoints.Num();
     // Scale points to fit the canvas

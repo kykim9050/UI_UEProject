@@ -54,10 +54,3 @@ int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometr
 
 	return Super::NativePaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, currentLayer, InWidgetStyle, bParentEnabled);
 }
-
-const FVector2D URadarChartItemsWidget::findCanvasCenterOffset(const FVector2D& canvasSize) const
-{
-    FVector2D canvasOffset = canvasSize / 2.;
-
-    return canvasOffset;
-}

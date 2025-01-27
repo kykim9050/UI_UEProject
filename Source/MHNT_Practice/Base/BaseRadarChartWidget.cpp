@@ -25,3 +25,10 @@ int32 UBaseRadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry
 {
     return Super::NativePaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
 }
+
+const FVector2D UBaseRadarChartWidget::findCanvasCenterOffset(const FVector2D& canvasSize) const
+{
+    FVector2D canvasOffset = canvasSize / 2.;
+
+    return canvasOffset;
+}
