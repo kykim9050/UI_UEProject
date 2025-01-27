@@ -14,7 +14,7 @@ class MHNT_PRACTICE_API URadarChartItemsWidget : public UBaseRadarChartWidget
 {
 	GENERATED_BODY()
 public:
-    void SetItems(const TArray<FText>& itemNames) override;
+    void SetItems(const TArray<FText>& itemNames);
 
 protected:
     // Override OnPaint to draw the graph
@@ -41,7 +41,6 @@ private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
     TArray<FText> mItemNames;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
     float mItemTextSize = 10.f;
-
-    double mItemsRoundTotalDegree = 360.0;
 };

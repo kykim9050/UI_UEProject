@@ -2,7 +2,7 @@
 
 
 #include "UI/Industry/IndustryDisasterChartWidget.h"
-#include "Base/BaseRadarChartWidget.h"
+#include "Base/RadarChartWidget.h"
 
 void UIndustryDisasterChartWidget::InitItems(const int32 max, const int32 interval, const TArray<FText>& itemNames)
 {

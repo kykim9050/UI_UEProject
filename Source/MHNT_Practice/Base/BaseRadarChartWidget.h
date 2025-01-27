@@ -16,8 +16,6 @@ class MHNT_PRACTICE_API UBaseRadarChartWidget : public UBaseChartWidget
     GENERATED_BODY()
 public:
 
-    virtual void SetItems(const TArray<FText>& itemNames) {}
-
 protected:
     
     virtual int32 NativePaint(
@@ -33,6 +31,12 @@ protected:
 private:
 
 protected:
+
+    /// <summary>
+    /// 방사형 그래프의 범위 최대 각도 (0~360 )
+    /// </summary>
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
+    double mItemsRoundTotalDegree = 360.0;
 
 private:
 };

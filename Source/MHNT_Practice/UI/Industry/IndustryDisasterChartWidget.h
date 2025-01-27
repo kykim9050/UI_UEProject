@@ -9,7 +9,7 @@
 /**
  * 
  */
-class UBaseRadarChartWidget;
+class URadarChartWidget;
 UCLASS()
 class MHNT_PRACTICE_API UIndustryDisasterChartWidget : public UBaseIndustryWidget
 {
@@ -27,5 +27,5 @@ protected:
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<UBaseRadarChartWidget> mRadarChart = nullptr;
+	TObjectPtr<URadarChartWidget> mRadarChart = nullptr;
 };
