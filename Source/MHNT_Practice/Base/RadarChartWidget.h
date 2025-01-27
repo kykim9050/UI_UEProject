@@ -4,21 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "Base/BaseRadarChartWidget.h"
-#include "RadarChartItemsWidget.generated.h"
+#include "RadarChartWidget.generated.h"
 
 /**
  * 
  */
+class URadarChartItemsWidget;
 UCLASS()
-class MHNT_PRACTICE_API URadarChartItemsWidget : public UBaseRadarChartWidget
+class MHNT_PRACTICE_API URadarChartWidget : public UBaseRadarChartWidget
 {
 	GENERATED_BODY()
 public:
     void SetItems(const TArray<FText>& itemNames) override;
 
 protected:
-    // Override OnPaint to draw the graph
-    int32 NativePaint(
+    virtual int32 NativePaint(
         const FPaintArgs& Args,
         const FGeometry& AllottedGeometry,
         const FSlateRect& MyCullingRect,
@@ -28,20 +28,12 @@ protected:
         bool bParentEnabled
     ) const override;
 
-    const FVector2D findCanvasCenterOffset(const FVector2D& canvasSize) const override;
-
 private:
 
 protected:
+    void NativeConstruct() override;
 
 private:
-    /// <summary>
-    /// 표시할 항목 명들
-    /// </summary>
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
-    TArray<FText> mItemNames;
-
-    float mItemTextSize = 10.f;
-
-    double mItemsRoundTotalDegree = 360.0;
+    UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+    TObjectPtr<URadarChartItemsWidget> mRadarChartItems = nullptr;
 };

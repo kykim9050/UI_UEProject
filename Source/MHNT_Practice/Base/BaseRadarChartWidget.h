@@ -13,11 +13,13 @@ class URadarChartItemsWidget;
 UCLASS()
 class MHNT_PRACTICE_API UBaseRadarChartWidget : public UBaseChartWidget
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 public:
-    void SetItems(const TArray<FText>& itemNames);
+
+    virtual void SetItems(const TArray<FText>& itemNames) {}
 
 protected:
+    
     virtual int32 NativePaint(
         const FPaintArgs& Args,
         const FGeometry& AllottedGeometry,
@@ -31,9 +33,6 @@ protected:
 private:
 
 protected:
-    void NativeConstruct() override;
 
 private:
-    UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
-    TObjectPtr<URadarChartItemsWidget> mRadarChartItems = nullptr;
 };
