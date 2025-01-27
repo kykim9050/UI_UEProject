@@ -9,7 +9,7 @@ void URadarChartWidget::SetDatas(const int32 max, const TArray<int32>& datas)
     mMaxDataVal = max;
     mDatas = datas;
 
-    //convertDataPointsNormal(itemNames.Num());
+    convertDataPointsNormal(datas.Num());
 
     updateScreen();
 }
@@ -30,8 +30,11 @@ int32 URadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Al
     {
         for (int32 i = 0; i < dataPointsNum; i++)
         {
-            FVector2D startPoint = mDataPoints[i] * canvasSize + canvasOffset;
-            FVector2D endPoint = mDataPoints[(i + 1) % dataPointsNum] * canvasSize + canvasOffset;
+            double startPointScale = StaticCast<double>(mDatas[i]) / StaticCast<double>(mMaxDataVal);
+            double endPointScale = StaticCast<double>(mDatas[(i + 1) % dataPointsNum]) / StaticCast<double>(mMaxDataVal);
+
+            FVector2D startPoint = mDataPoints[i] * canvasSize * startPointScale + canvasOffset;
+            FVector2D endPoint = mDataPoints[(i + 1) % dataPointsNum] * canvasSize * endPointScale + canvasOffset;
 
             FSlateDrawElement::MakeLines(
                 OutDrawElements,
@@ -49,9 +52,11 @@ int32 URadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Al
     // 데이터 포인트 그리기
     if (dataPointsNum > 0)
     {
+        int32 pointCnt = 0;
+
         for (const FVector2D& Point : mDataPoints)
         {
-            FVector2D drawPosition = Point * canvasSize + canvasOffset;
+            FVector2D drawPosition = Point * canvasSize * StaticCast<double>(mDatas[pointCnt++]) / StaticCast<double>(mMaxDataVal) + canvasOffset;
 
             // 원의 크기와 색상 설정
             FVector2D circleSize(8.0f, 8.0f); // 반지름 4.0f
