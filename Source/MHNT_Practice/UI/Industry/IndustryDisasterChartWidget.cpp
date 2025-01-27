@@ -3,10 +3,12 @@
 
 #include "UI/Industry/IndustryDisasterChartWidget.h"
 #include "Base/RadarChartWidget.h"
+#include "Base/RadarChartItemsWidget.h"
 
-void UIndustryDisasterChartWidget::InitItems(const int32 max, const int32 interval, const TArray<FText>& itemNames)
+void UIndustryDisasterChartWidget::InitItems(const int32 max, const TArray<FText>& itemNames, const TArray<int32>& datas)
 {
-	mRadarChart->SetItems(itemNames);
+	mRadarChart->GetRadarChartItemsWidget()->SetItems(itemNames);
+	mRadarChart->SetDatas(max, datas);
 }
 
 void UIndustryDisasterChartWidget::NativeConstruct()

@@ -4,9 +4,14 @@
 #include "Base/RadarChartWidget.h"
 #include "Base/RadarChartItemsWidget.h"
 
-void URadarChartWidget::SetItems(const TArray<FText>& itemNames)
+void URadarChartWidget::SetDatas(const int32 max, const TArray<int32>& datas)
 {
-    mRadarChartItems->SetItems(itemNames);
+    mMaxDataVal = max;
+    mDatas = datas;
+
+    //convertDataPointsNormal(itemNames.Num());
+
+    updateScreen();
 }
 
 int32 URadarChartWidget::NativePaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const

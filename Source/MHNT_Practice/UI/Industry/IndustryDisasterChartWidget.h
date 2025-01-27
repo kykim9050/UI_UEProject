@@ -16,7 +16,7 @@ class MHNT_PRACTICE_API UIndustryDisasterChartWidget : public UBaseIndustryWidge
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable)
-	void InitItems(const int32 max, const int32 interval, const TArray<FText>& itemNames);
+	void InitItems(const int32 max, const TArray<FText>& itemNames, const TArray<int32>& datas);
 
 protected:
 

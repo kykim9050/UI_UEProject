@@ -17,7 +17,8 @@ class MHNT_PRACTICE_API UBaseRadarChartWidget : public UBaseChartWidget
 public:
 
 protected:
-    
+    void convertDataPointsNormal(const int32 datasNum);
+
     virtual int32 NativePaint(
         const FPaintArgs& Args,
         const FGeometry& AllottedGeometry,
@@ -31,7 +32,6 @@ protected:
 private:
 
 protected:
-
     /// <summary>
     /// 방사형 그래프의 범위 최대 각도 (0~360 )
     /// </summary>

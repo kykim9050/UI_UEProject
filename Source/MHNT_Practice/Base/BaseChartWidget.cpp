@@ -9,7 +9,7 @@ void UBaseChartWidget::SetGraphData(const TArray<FVector2D>& InDataPoints)
 {
     mDataPoints = InDataPoints;
 
-    Invalidate(EInvalidateWidget::Paint); // Force the widget to redraw
+    updateScreen();
 }
 
 const FVector2D UBaseChartWidget::findCanvasCenterOffset(const FVector2D& canvasSize) const
@@ -27,4 +27,9 @@ const FVector2D UBaseChartWidget::convertCanvasSizeSquare(const FVector2D& canva
     double canvasMinSize = FMath::Min(canvasSize.X, canvasSize.Y);
     canvasSize.X >= canvasSize.Y ? (newSize.X = canvasMinSize) : (newSize.Y = canvasMinSize);
     return newSize;
+}
+
+void UBaseChartWidget::updateScreen()
+{
+    Invalidate(EInvalidateWidget::Paint); // Force the widget to redraw
 }

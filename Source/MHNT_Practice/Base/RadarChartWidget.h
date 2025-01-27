@@ -15,7 +15,12 @@ class MHNT_PRACTICE_API URadarChartWidget : public UBaseRadarChartWidget
 {
 	GENERATED_BODY()
 public:
-    void SetItems(const TArray<FText>& itemNames);
+    void SetDatas(const int32 max, const TArray<int32>& datas);
+
+    FORCEINLINE URadarChartItemsWidget* GetRadarChartItemsWidget() const
+    {
+        return mRadarChartItems.Get();
+    }
 
 protected:
     virtual int32 NativePaint(
@@ -34,6 +39,15 @@ protected:
     void NativeConstruct() override;
 
 private:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
+    TArray<int32> mDatas;
+
     UPROPERTY(BlueprintReadOnly, meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
     TObjectPtr<URadarChartItemsWidget> mRadarChartItems = nullptr;
+
+    /// <summary>
+    /// 표시할 데이터의 최대 값
+    /// </summary>
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph", meta = (AllowprivateAccess = "true"))
+    int32 mMaxDataVal = -1;
 };

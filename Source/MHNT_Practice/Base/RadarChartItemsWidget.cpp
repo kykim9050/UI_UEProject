@@ -7,21 +7,9 @@ void URadarChartItemsWidget::SetItems(const TArray<FText>& itemNames)
 	// mItemNames 대입
 	mItemNames = itemNames;
 
-    int32 itemNamesNum = mItemNames.Num();
-    // mItemNames 항목을 토대로 위치 좌표 형성
-    // 데이터 수만큼 나누어 일정한 각도 간격
-    mDataPoints.Reserve(itemNamesNum);
+    convertDataPointsNormal(itemNames.Num());
 
-    double radUnit = FMath::DegreesToRadians(mItemsRoundTotalDegree / StaticCast<double>(itemNamesNum));
-    for (int32 i = 0; i < itemNamesNum; i++)
-    {
-        mDataPoints.Add(FVector2D{ 
-            FMath::Cos(StaticCast<double>(i) * radUnit),
-            FMath::Sin(StaticCast<double>(i) * radUnit)}
-            );
-    }
-
-	Invalidate(EInvalidateWidget::Paint);
+    updateScreen();
 }
 
 int32 URadarChartItemsWidget::NativePaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const

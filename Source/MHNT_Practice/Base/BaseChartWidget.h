@@ -44,6 +44,11 @@ protected:
     /// <param name="canvasSize"></param>
     /// <returns></returns>
     const FVector2D convertCanvasSizeSquare(const FVector2D& canvasSize) const;
+    
+    /// <summary>
+    /// 위젯 다시 그리기
+    /// </summary>
+    void updateScreen();
 private:
 
 protected:
