@@ -20,7 +20,10 @@ public:
 
 	void SetJustification(ETextJustify::Type InJustification);
 
+	UFUNCTION(BlueprintCallable)
 	void SetFont(const FSlateFontInfo& InFontInfo);
+
+	UFUNCTION(BlueprintCallable)
 	const FSlateFontInfo& GetFont() const;
 
 protected:
