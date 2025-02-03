@@ -24,6 +24,9 @@ public:
 	void SetFont(const FSlateFontInfo& InFontInfo);
 
 	UFUNCTION(BlueprintCallable)
+	void SetFontSize(float fontSize);
+
+	UFUNCTION(BlueprintCallable)
 	const FSlateFontInfo& GetFont() const;
 
 protected:

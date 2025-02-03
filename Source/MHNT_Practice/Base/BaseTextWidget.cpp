@@ -19,6 +19,14 @@ void UBaseTextWidget::SetFont(const FSlateFontInfo& InFontInfo)
 	mTextBlock->SetFont(InFontInfo);
 }
 
+void UBaseTextWidget::SetFontSize(float fontSize)
+{
+	FSlateFontInfo TempFontInfo = GetFont();
+
+	TempFontInfo.Size = fontSize;
+	SetFont(TempFontInfo);
+}
+
 const FSlateFontInfo& UBaseTextWidget::GetFont() const
 {
 	return mTextBlock->GetFont();
